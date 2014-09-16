@@ -22,7 +22,7 @@ var Generator = module.exports = function Generator(args, options) {
   this.env.options['app-suffix'] = this.options['app-suffix'];
   this.scriptAppName = this.appname + angularUtils.appName(this);
 
-  args = ['main'];
+  args = ['tasks'];
 
   if (typeof this.env.options.appPath === 'undefined') {
     this.option('appPath', {
@@ -67,6 +67,10 @@ var Generator = module.exports = function Generator(args, options) {
 
   this.hookFor('angular:controller', {
     args: args
+  });
+
+  this.hookFor('angular:factory', {
+    args:args
   });
 
   this.on('end', function () {
@@ -296,7 +300,7 @@ Generator.prototype.appJs = function appJs() {
     html: this.indexFile,
     fileType: 'js',
     optimizedPath: 'scripts/scripts.js',
-    sourceFileList: ['scripts/app.js', 'scripts/controllers/main.js'],
+    sourceFileList: ['scripts/app.js', 'scripts/controllers/tasks.js'],
     searchPath: ['.tmp', this.appPath]
   });
 };

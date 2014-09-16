@@ -21,6 +21,7 @@ Generator.prototype.setupEnv = function setupEnv() {
   this.directory('test');
 
   this.sourceRoot(join(__dirname, '../templates/common'));
+  this.directory('api');
   var appPath = this.options.appPath;
   var copy = function (dest) {
     this.copy(join('app', dest), join(appPath, dest));
@@ -31,6 +32,6 @@ Generator.prototype.setupEnv = function setupEnv() {
   copy('404.html');
   copy('favicon.ico');
   copy('robots.txt');
-  copy('views/main.html');
+  copy('views/tasks.html');
   this.directory(join('app', 'images'), join(appPath, 'images'));
 };

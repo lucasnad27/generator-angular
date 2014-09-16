@@ -1,14 +1,14 @@
-# AngularJS generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-angular.svg?branch=master)](http://travis-ci.org/yeoman/generator-angular)
+> Yeoman generator for AngularJS and a backend RESTful api built with Flask- lets you quickly set up a project with sensible defaults and best practices.
 
-> Yeoman generator for AngularJS - lets you quickly set up a project with sensible defaults and best practices.
+This generator was forked from the ever popular [generator-angular](https://github.com/yeoman/generator-angular) project. The api is built using the [flask-restful](http://flask-restful.readthedocs.org/) extension. Credit is due to Miguel Grinberg and his [blog](http://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful) on building RESTful services using Flask and Mike Partridge for his [blog post](http://www.hierax.org/2014/01/grunt-proxy-setup-for-yeoman.html) on creating a proxy with grunt. This allows for all client-side ajax requests made to /api to be forwarded to the flask server. This allows a developer to work on their application, rather than worrying about making cross-domain requests within their local development. Of course, when ready for production, proper steps should be taken to configure your webserver properly.
 
-[Roadmap for upcoming plans/features/fixes](https://github.com/yeoman/generator-angular/issues/553)
 
-## Usage
 
-Install `generator-angular`:
+## Front End Usage
+
+Install `generator-angular-flaskapi`:
 ```
-npm install -g generator-angular
+npm install -g generator-angular-flaskapi
 ```
 
 Make a new directory, and `cd` into it:
@@ -16,10 +16,33 @@ Make a new directory, and `cd` into it:
 mkdir my-new-project && cd $_
 ```
 
-Run `yo angular`, optionally passing an app name:
+Run `yo angular-flaskapi`, optionally passing an app name:
 ```
-yo angular [app-name]
+yo angular-flaskapi [app-name]
 ```
+
+## Back End Usage
+cd into the api/ directory
+```
+cd api
+```
+
+Create a virtual python environment and activate it
+```
+virtualenv ./env && source ./env/bin/activate
+```
+
+Install requirements
+```
+pip install -r requirements.txt
+```
+
+Run built-in flask server to act in concert with your front-end application
+```
+python serve.py
+```
+
+Any calls made to /api from your client-side application will be forward to the 9000 port on your local machine. This is to be used for development only. Do not run this configuration for production purposes.
 
 Run `grunt` for building and `grunt serve` for preview
 
@@ -48,7 +71,7 @@ Sets up a new AngularJS app, generating all the boilerplate you need to get star
 
 Example:
 ```bash
-yo angular
+yo angular-flaskapi
 ```
 
 ### Route

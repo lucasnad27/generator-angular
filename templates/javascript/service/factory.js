@@ -8,16 +8,8 @@
  * Factory in the <%= scriptAppName %>.
  */
 angular.module('<%= scriptAppName %>')
-  .factory('<%= cameledName %>', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
+  .factory('<%= cameledName %>', function ($resource) {
+    return $resource('/api/<%= name %>/:id', { id: '@id'},
+                    {'query': {method: 'GET', isArray: false}},
+                    { 'update': { method: 'PUT' } } );
   });
